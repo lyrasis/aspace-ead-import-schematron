@@ -1,0 +1,22 @@
+:toc:
+:toc-placement!:
+:toclevels: 4
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+= Changelog
+All notable changes to this project from 2024-11-14 onward will be documented in this file.
+
+The format is loosely based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog], though this project does not adhere to https://semver.org/spec/v2.0.0.html[Semantic Versioning].
+
+toc::[]
+
+== YYYY-MM-DD
+
+* List changes made on the date.
