@@ -1,0 +1,47 @@
+= aspace-ead-import-schematron
+
+== What is this?
+
+This repository contains the ArchivesSpace-EAD-validator.sch Schematron file maintained by the Lyrasis Data Migrations team. This Schematron is based on https://github.com/fordmadox/schematrons/blob/master/ArchivesSpace-EAD-validator.sch[the one developed by Mark Custer at Yale].
+
+As per https://schematron.com/[the Schematron website], it is "A language for making assertions about the presence or absence of patterns in linked XML documents, and reporting them in useful ways."
+
+It can be used to validate XML files in more powerful ways than can be accomplished via XML Schema or DTDs.
+
+== What is it for?
+
+ArchivesSpace has some requirements of EAD files to be ingested, that go beyond the EAD specification. For example, ArchivesSpace expects extent information to be recorded in certain way, while there are several valid patterns for expressing extent in EAD.
+
+Validating EAD against this Schematron prior to initiating bulk ingest of the EAD into ArchivesSpace will highlight data issues that will cause ingest errors. The Schematron results are, in general, much clearer than the error messages emitted by the ingest process.
+
+== How do I use this?
+
+=== Oxygen
+
+If you create a project in Oxygen, you can batch validate all files in the project against the Schematron and save the results to a file.
+
+Consult the Oxygen documentation on how to set up a project and run validations against a schema or Schematron.
+
+=== Other options
+
+The Lyrasis Data Migrations team uses Oxygen to perform Schematron validations, and we are unable to recommend or provide support for other methods.
+
+If other XML editing applications support performing batch Schematron validation, we would love to add that info to this page. Let us know by either (a) submitting a pull request with updates to this README file; or (b) https://github.com/lyrasis/aspace-ead-import-schematron/issues[creating a new issue].
+
+If your technical skills and IT policies allow you to install and use code libraries, command line applications, and other tools, https://github.com/Schematron/awesome-schematron[Awesome Schematron] provides a curated list of tools, applications, and reference material.
+
+== Disclaimers
+
+This Schematron does not currently (and is unlikely to ever) catch *all possible things* that may cause errors in ArchivesSpace bulk ingest.
+
+We attempt to maintain and improve this tool as we run into issues while migrating client data into ArchivesSpace, but do not have the resources to actively develop it on an ongoing basis.
+
+== Contributing / Improving this tool
+
+If you make improvements to the Schematron, we'd love to merge those improvements in and give you credit!
+
+We are open to pull requests.
+
+To submit a pull request, you will need to (1) fork this repository, (2) make the changes in your fork, and (3) submit the pull request from your fork to this repository.
+
+Alternately, you can create a new issue with a your changed file attached (or linked to as a Gist, etc.).
