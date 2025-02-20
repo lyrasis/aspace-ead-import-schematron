@@ -2,25 +2,25 @@
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
     <ns uri="http://www.w3.org/1999/xlink" prefix="xlink"/>
     <ns uri="urn:isbn:1-931666-22-9" prefix="ead"/>
-    <!-- 
+    <!--
         Originally stolen from Mark Custer's schematron at https://github.com/fordmadox/schematrons
-        
-        eventually, this file should test for all of the ASpace "EAD" requirements prior to import  
+
+        eventually, this file should test for all of the ASpace "EAD" requirements prior to import
         (still need to figure what all of those are, including all undocumented data model constraints, etc.)
-        
+
 for the time being, i removed namespace checks so that the same rules will work for DTD and/or schema-associated files.
-        
+
         still to add:
             dao stuff (must have title and href attributes?)
            something about field lengths (also need to test for length of title / unit ids, etc.)... if something is too long for the database, etc., like the 65k character limit :(
            what else???
-        
+
         still to do:
            re-write the error messages!
            make sure that the error messages include everything needed
            pray that i can use xpath 2.0, as i've done here
            group and arrange this file like a semi-decent schematron file should actually be structured (and learn how to do that!)
-           
+
     -->
 
     <pattern id="dogs_breakfast_of_checks">
@@ -33,7 +33,7 @@ for the time being, i removed namespace checks so that the same rules will work 
             <assert test="*:unitid[normalize-space()][1]">You must supply an identifier at the resource level</assert>
             <assert test="*:physdesc/*:extent[normalize-space()][1]">You must supply an extent statement at the resource level. This should be formatted with an extent number and an extent type, like
                 so: "3.25 cubic meters"</assert>
-            <!-- is ASpace (like the AT) fine with this value just being in physdesc?  if so, then update this check.  or, make ASpace more strict, so that folks can still 
+            <!-- is ASpace (like the AT) fine with this value just being in physdesc?  if so, then update this check.  or, make ASpace more strict, so that folks can still
             import generic physdesc notes at the resource level.-->
             <assert test="*:physdesc/*:extent[1][matches(normalize-space(.), '\D')]">The extent statement must contain more than just an extent number. If you're making use of the @unit attribute,
                 you would probably be safe in copying that value to the end of the extent's text node (e.g. @unit="Linear Feet", 5... could be changed to @unit="Linear Feet", 5 Linear Feet) </assert>
@@ -41,8 +41,8 @@ for the time being, i removed namespace checks so that the same rules will work 
                 Linear Feet" is a valid value, but "5items" is not). </assert>
             <report test="*:physdesc/*:extent[2]">Warning: When importing via the EAD Importer, multiple extent tags in a single physdesc element will result in one extent with all subsequent extents
                 smushed together into a container summary.</report>
-            <report test="*:physdesc/*:extent[matches(.,'.*\(.*\).*')]">Warning: This extent contains parenthetical information. The EAD Importer follows this pattern: "If there's a number followed by a space, 
-                create extent_number and extent_type where extent_number is the number and extent_type is everything else". Example: 3.49 GB (57 files: 30 .tif, 26.dng, 1 .pdf) will result in 
+            <report test="*:physdesc/*:extent[matches(.,'.*\(.*\).*')]">Warning: This extent contains parenthetical information. The EAD Importer follows this pattern: "If there's a number followed by a space,
+                create extent_number and extent_type where extent_number is the number and extent_type is everything else". Example: 3.49 GB (57 files: 30 .tif, 26.dng, 1 .pdf) will result in
                 extent_number: 3.49; extent_type: GB (57 files: 30 .tif, 26.dng, 1 .pdf)</report>
         </rule>
     </pattern>
@@ -50,7 +50,7 @@ for the time being, i removed namespace checks so that the same rules will work 
     <pattern id="checking_for_date_normalization_issues">
         <rule context="*:unitdate[contains(@normal, '/')]">
             <!-- this will work for most cases, but it's not going to catch if someone inputs a date like 2010-02-30...
-                the EAD2002 schema also won't pick that particular error up (and it sounds like EAD3 is doing away with all of those sorts of validations!)  
+                the EAD2002 schema also won't pick that particular error up (and it sounds like EAD3 is doing away with all of those sorts of validations!)
             to correct that here, i'd just need to analye the string and set year, month, and day values for each begin and end dates to do the validtion.
             i assume that's worth doing?
             -->
@@ -120,7 +120,7 @@ for the time being, i removed namespace checks so that the same rules will work 
             <assert test="self::*/@type">ASpace requires that the second and third containers have a type attribute</assert>
         </rule>
     </pattern>
-    
+
     <pattern id="checking_dao_expectations">
         <rule context="*:dao">
             <assert test="self::*/@title">ASpace requires that every dao have a title attribute</assert>
