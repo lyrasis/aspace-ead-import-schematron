@@ -17,6 +17,6 @@ The format is loosely based on https://keepachangelog.com/en/1.0.0/[Keep a Chang
 
 toc::[]
 
-== YYYY-MM-DD
+== 2025-02-20
 
-* List changes made on the date.
+* Fix two typos in error/warning messages
