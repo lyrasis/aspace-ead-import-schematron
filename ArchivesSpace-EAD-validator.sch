@@ -35,7 +35,7 @@ for the time being, i removed namespace checks so that the same rules will work 
                 so: "3.25 cubic meters"</assert>
             <!-- is ASpace (like the AT) fine with this value just being in physdesc?  if so, then update this check.  or, make ASpace more strict, so that folks can still 
             import generic physdesc notes at the resource level.-->
-            <assert test="*:physdesc/*:extent[1][matches(normalize-space(.), '\D')]"> AThe extent statement must contain more than just an extent number. If you're making use of the @unit attribute,
+            <assert test="*:physdesc/*:extent[1][matches(normalize-space(.), '\D')]">The extent statement must contain more than just an extent number. If you're making use of the @unit attribute,
                 you would probably be safe in copying that value to the end of the extent's text node (e.g. @unit="Linear Feet", 5... could be changed to @unit="Linear Feet", 5 Linear Feet) </assert>
             <assert test="*:physdesc/*:extent[1][matches(normalize-space(.), '^[\.\d]+\s')]"> The extent statement must start with a number and it must also have at least one space present. (e.g. "5
                 Linear Feet" is a valid value, but "5items" is not). </assert>
@@ -72,7 +72,7 @@ for the time being, i removed namespace checks so that the same rules will work 
         <rule context="*:c/*:did | *[matches(local-name(), '^c0|^c1|^c2|^c3|c4')]/*:did">
             <assert test="parent::*/@level">You must specify a level attribute at every level of description</assert>
             <assert test="*:unittitle[normalize-space()] or descendant::*:unitdate[normalize-space()] or descendant::*:unitdate[@normal]"> You must specify either a title or a date when describing
-                archival components (this is a requirement enforced by the AchivesSpace data model, not by EAD)</assert>
+                archival components (this is a requirement enforced by the ArchivesSpace data model, not by EAD)</assert>
         </rule>
     </pattern>
 
