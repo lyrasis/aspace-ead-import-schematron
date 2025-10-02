@@ -123,7 +123,7 @@ for the time being, i removed namespace checks so that the same rules will work 
 
     <pattern id="checking_dao_expectations">
         <rule context="*:dao">
-            <assert test="self::*/@title">ASpace requires that every dao have a title attribute</assert>
+            <assert test="self::*/@xlink:title">ASpace requires that every dao have a title attribute</assert>
         </rule>
     </pattern>
 
